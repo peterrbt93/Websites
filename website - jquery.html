@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<script src="https://code.jquery.com/jquery-3.1.1.js"></script>
+<style>
+#container {
+    width: 500px;
+    height: 500px;
+    background-color: rgb(0, 0, 255);
+    position: relative;
+}
+#box {
+    width: 50px;
+    height: 50px;
+    background: white;
+    position: absolute;
+}
+.opac {
+    opacity: 0.5;
+}
+</style>
+<head>
+	<title>Page Title</title>
+</head>
+    
+<body>
+	<button id="containerButton">Change container color</button>
+	<div id="container">
+            <div id="box"> </div>
+        </div>
+
+
+
+	<form onsubmit="return validate()" method="post">
+		Number: <input type="text" name="num1" id="num1" />
+		<br/>
+		Repeat: <input type="text" name="num2" id="num2" />
+		<br/>
+		<input type="submit" value="Submit" />
+		
+	</form>
+
+</body>
+
+<script>
+
+function validate() {
+	var n1 = $("#num1").val();
+	var n2 = $("#num2").val();
+	if (n1!="" && n2!="") {
+		if (n1==n2) {
+			return true;
+		}
+	}
+	alert("Numbers are not the same")
+	return false;
+}
+
+//Create classes
+class Rectangle {
+	constructor(x,y){
+		this.x = x
+		this.y = y
+	}
+	getArea(multiplier=1) {
+		return this.calcArea()*multiplier;
+	}
+	calcArea() {
+		return this.x*this.y
+	}	
+}
+
+
+
+function changeColorContainer() {
+	var container = $('#container');
+	var newR = Math.random()*255;
+	var newG = Math.random()*255;
+	var newB = Math.random()*255;
+	var newColor = `rgb(${newR},${newG},${newB})`;
+	container.css("background-color", newColor); 
+};
+//Add function to button
+$("#containerButton").click(function(){
+changeColorContainer()
+});
+
+
+function changeColorBox() {
+	var box = $('#box');	
+	var newR = Math.random()*255;
+	var newG = Math.random()*255;
+	var newB = Math.random()*255;
+	var newColor = `rgb(${newR},${newG},${newB})`;
+	box.css("background-color", newColor) 
+};
+
+//Add function to keypress
+$(document).keydown(  function (event) {
+		console.log(event.keyCode)
+		switch (event.keyCode) {
+			case 67:
+				console.log("Color is changing");
+				changeColorBox();
+				break;
+			case 65:
+				var pos = parseInt($("#box").css('left').slice(0,-2));
+				pos-=80
+				$('#box').animate({left:pos+'px'})
+				console.log("Left key is pressed.");
+				break;
+			case 87:
+				var pos = parseInt($("#box").css('top').slice(0,-2));
+				pos-=80
+				$('#box').animate({top:pos+'px'})
+				console.log("Up key is pressed.");
+				break;
+			case 68:
+				var pos = parseInt($("#box").css('left').slice(0,-2));
+				pos+=80
+				$('#box').animate({left:pos+'px'})
+				console.log("Right key is pressed.");
+				break;
+			case 83:
+				var pos = parseInt($("#box").css('top').slice(0,-2));
+				pos+=80
+				$('#box').animate({top:pos+'px'})
+				console.log("Down key is pressed.");
+				break;
+      }
+   });
+   
+
+
+$("#opacity").click(function() {
+	$("#slider").toggleClass("opac");
+});
+
+$(document).ready(function(){
+
+const square = new Rectangle(5,5);
+console.log(square.getArea());
+
+//Add list as parameters to function
+function myFunction(w, x, y) {
+    console.log(w + x + y);
+};
+
+let args = [2, 3, 5];
+myFunction(...args);
+
+
+
+});
+
+
+</script>
+
+</html>
