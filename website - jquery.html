@@ -149,38 +149,6 @@ let args = [2, 3, 5];
 myFunction(...args);
 
 
-const todos = [
-	{
-		id: 1,
-		text: "Go to dentist",
-		isCompleted: false
-	},
-	{
-		id: 2,
-		text: "Go to cinema",
-		isCompleted: true
-	},
-	{
-		id: 3,
-		text: "Go to grocery",
-		isCompleted: true
-	},
-];
-
-todos.forEach(function(todo){
-	console.log(todo.text)
-});
-const todoText = todos.map(function(todo){
-	return todo.text
-});
-console.log(todoText);
-const todoTextIsComplete = todos.filter(function(todo){
-	return todo.isCompleted == true;
-}).map(function(todo) {
-	return todo.text
-});
-console.log(todoTextIsComplete);
-
 
 });
 
